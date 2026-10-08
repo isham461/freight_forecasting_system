@@ -29,7 +29,8 @@ export default function RouteMap({ selectedRoute }) {
   const [fleetData, setFleetData] = useState(null);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/logistics/fleet-simulation')
+    const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
+    axios.get(`${API_BASE}/logistics/fleet-simulation`)
       .then(res => setFleetData(res.data))
       .catch(err => console.error("Error fetching fleet data:", err));
   }, []);
